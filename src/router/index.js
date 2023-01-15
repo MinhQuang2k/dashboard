@@ -1,26 +1,59 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import CategoryView from "../views/CategoryView.vue";
+import AddCategoryView from "../views/AddCategoryView.vue";
+import TemplateView from "../views/TemplateView.vue";
+import AddTemplateView from "../views/AddTemplateView.vue";
+import LoginForm from "../views/LoginForm.vue";
+import BaseLayout from "../common/BaseLayout.vue";
+import { USER_INFO } from "@/const/context";
 
 const routes = [
   {
     path: "/",
-    name: "home",
-    component: HomeView,
+    component: BaseLayout,
+    children: [
+      {
+        path: "/",
+        name: "template",
+        component: TemplateView,
+      },
+      {
+        path: "/template/add",
+        name: "addTemplateView",
+        component: AddTemplateView,
+      },
+      {
+        path: "/category",
+        name: "category",
+        component: CategoryView,
+      },
+      {
+        path: "/category/add",
+        name: "addCategoryView",
+        component: AddCategoryView,
+      },
+    ],
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    path: "/login",
+    name: "login",
+    component: LoginForm,
   },
+  { path: "/:pathMatch(.*)*", redirect: "/" },
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(),
   routes,
+});
+
+router.beforeEach(async (to) => {
+  const publicPages = ["/login"];
+  const authRequired = !publicPages.includes(to.path);
+  const auth = JSON.parse(localStorage.getItem(USER_INFO));
+  if (authRequired && !auth?.token) {
+    return "/login";
+  }
 });
 
 export default router;

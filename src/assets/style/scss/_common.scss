@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+:root {
+  --pink: #d81b60;
+  --purple: #4a148c;
+  --indigo: #16193c;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+}
+
+.box {
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  background: white;
+  .box-header {
+    min-height: 80px;
+  }
+}
+
+.list-image {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.auth {
+  margin: 10rem;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.title-page {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+// button delete
+.ant-btn.ant-btn-primary.ant-btn-dangerous {
+  background: var(--pink);
+  border-radius: 3px;
+  border-color: var(--pink);
+}
+.ant-btn.ant-btn-default.ant-btn-dangerous {
+  color: var(--pink);
+  border-color: var(--pink);
+}
+
+// button primary
+.ant-btn.ant-btn-primary {
+  background: var(--purple);
+  border-radius: 3px;
+  border-color: var(--purple);
+}
+.ant-btn.ant-btn-default {
+  color: var(--purple);
+  border-color: var(--purple);
+}
